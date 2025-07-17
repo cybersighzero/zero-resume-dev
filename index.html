@@ -1,56 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zero (P. N.) | Cybersecurity</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero | Pratima Narang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --primary: #54133a;
+      --secondary: #11451f;
+      --accent: #ad8bc9;
+      --text-light: #eaeaea;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Fira Code', monospace;
+      background-color: var(--main-bg);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--primary);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-placeholder {
+      width: 40px;
+      height: 40px;
+      background-color: var(--accent);
+      border-radius: 50%;
+    }
+
+    .name-info {
+      text-align: right;
+    }
+
+    .name-info h1 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .name-info p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    section {
+      padding: 6rem 2rem 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+    }
+
+    .project {
+      background-color: #1a1a1a;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-left: 4px solid var(--secondary);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>Zero (P. N.)</h1>
-    <p>aka Pratima Narang</p>
-    <p>Cybersecurity Student | Breaker & Defender</p>
-    <nav>
-      <a href="https://github.com/cybersighzero" target="_blank">GitHub</a> |
-      <a href="https://linkedin.com/in/your-link" target="_blank">LinkedIn</a> |
-      <a href="mailto:your@email.com">Email</a>
-    </nav>
+    <div class="logo-placeholder"></div>
+    <div class="name-info">
+      <h1>Zero | Pratima Narang</h1>
+      <p>pratimanarang0@gmail.com</p>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2>About</h2>
-      <p>Zero is a cybersecurity learner with a curious mind, caffeine addiction, and a knack for pulling threads others overlook. Passionate about CTFs, digital forensics, and making systems bulletproof.</p>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Into ethical hacking & cybersec. I do THM. Finished my 12th (2025 batch); pursuing BTech CSE from [college TBD].</p>
     </section>
 
-    <section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Gumroad Buttons</h3>
+        <p>Designed and implemented custom buttons for digital product listings on Gumroad.</p>
+      </div>
+    </section>
+
+    <section id="skills">
       <h2>Skills</h2>
       <ul>
-        <li>Network Scanning (Nmap, Masscan)</li>
-        <li>Burp Suite / OWASP ZAP</li>
-        <li>Linux, Bash, Shell Scripting</li>
-        <li>Wireshark & Packet Analysis</li>
-        <li>OWASP Top 10</li>
+        <li>Python</li>
+        <li>DBMS - MySQL</li>
+        <li>Computer Networks</li>
       </ul>
     </section>
 
-    <section>
-      <h2>Projects</h2>
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
       <ul>
-        <li><strong>VulnHub CTF Writeups:</strong> Privilege escalation, enumeration, web app testing.</li>
-        <li><strong>Python Port Scanner:</strong> Threaded scanner for fast active host discovery.</li>
+        <li><a href="https://github.com/cybersighzero/" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/pratimanarang/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://tryhackme.com/p/zerosalvatore/" target="_blank">TryHackMe</a></li>
+        <li><a href="https://zerosalvatore.gumroad.com/" target="_blank">Gumroad</a></li>
+        <li><a href="mailto:pratimanarang0@gmail.com">Email Me</a></li>
       </ul>
-    </section>
-
-    <section>
-      <h2>Education</h2>
-      <p>BSc Cybersecurity (in progress)</p>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Zero (P. N.) | cybersighzero.github.io</p>
-  </footer>
+  <script>
+    const sections = document.querySelectorAll('section');
+    const options = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+
 </body>
 </html>
